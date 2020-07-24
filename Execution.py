@@ -35,7 +35,7 @@ for i in range(100000):
     p_list.append(np.maximum(round(H[3],1),-1))
 
 rho   = pd.DataFrame(p_list).dropna().mean()[0] # Correlation
-kappa = pd.DataFrame(kappa_list).dropna().mean()[0]# Revert rate
-theta = pd.DataFrame(theta_list).dropna().mean()[0] # Long-term Variance
-xi    = pd.DataFrame(xi_list).dropna().mean()[0] # Volatility of instantaneous volatility
+kappa = pd.DataFrame(kappa_list).dropna().mean()[0]# Revertion rate of the variance(conditional variance)
+theta = pd.DataFrame(theta_list).dropna().mean()[0] # Long-term Variance(conditional variance)
+xi    = pd.DataFrame(xi_list).dropna().mean()[0] # Volatility of the instantaneous variance(conditional variance)
 print(kappa,theta,xi,rho)
