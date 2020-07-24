@@ -7,12 +7,12 @@ from scipy.optimize import minimize
 from numba import jit
 import statsmodels.api as sm
 
-T     = 200
+T     = 700
 dt    = 1/252
 n=int(T/dt)
-rho=-0.50
-r=0.05
-ST,Output,Cond_Var=Stock_Selector('TLT').selector
+rho=-0.10
+r=0.01
+ST,Output,Cond_Var=Stock_Selector('QQQ').selector
 v0=Cond_Var[-1]
 MU  = np.array([0, 0])
 COV = np.matrix([[1, rho], [rho, 1]])
@@ -27,12 +27,12 @@ theta_list=[]
 xi_list=[]
 p_list=[]
 
-for i in range(1000000):
+for i in range(100000):
     H=Initialize_parameters().HeMC (r,v0, kappa, theta, xi, n, dt,W_v,W_S)
     kappa_list.append(H[0])
     theta_list.append(H[1])
     xi_list.append(H[2])
-    p_list.append(H[3])
+    p_list.append(np.maximum(round(H[3],1),-1))
 
 rho   = pd.DataFrame(p_list).dropna().mean()[0] # Correlation
 kappa = pd.DataFrame(kappa_list).dropna().mean()[0]# Revert rate
