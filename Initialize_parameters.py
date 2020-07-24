@@ -40,14 +40,17 @@ class Initialize_parameters:
 
   @staticmethod
   @jit(nopython=True)
-  def Summation(n,dt,vt):
+  def Summation(n,dt,vt,St):
     B1=((np.sum(vt[1:])*np.sum(vt[:-1]**-1))-n*np.sum(vt[1:]*(vt[:-1]**-1)))/((np.sum(vt[:-1])*np.sum(vt[:-1]**-1))-n**2)
     kappa=-(1/dt)*np.log(B1)
     B2=((np.sum(vt[1:]*vt[:-1]**-1))-n*B1)/((1-B1)*np.sum(vt[:-1]**-1))
     theta=B2
     B3=np.sum(((vt[1:]-(vt[:-1])*B1-B2*(1-B1))**2)*(n*vt[:-1])**-1)
     xi=(2*kappa*B3)/(1-B1**2)
-    return kappa,theta,xi
+    deltaWS=(St[1:]-(r-(1/2)*vt[:-1])*dt)/(np.sqrt(vt[:-1]))
+    deltaWV=(vt[1:]-vt[:-1]-kappa*(theta-vt[:-1])*dt)/(xi*np.sqrt(vt[:-1]))
+    rho=(1/(n*dt))*np.sum(deltaWS*deltaWV)
+    return kappa,theta,xi,rho
 
   def HeMC (self,r,v0, kappa, theta, xi, n, dt,W_v,W_S):
 
@@ -56,17 +59,10 @@ class Initialize_parameters:
     vt=MC[0]
     St=MC[1]
 
-    kappa,theta,xi=self.Summation(n,dt,vt)
 
-    def solver(p):
-        corr_calculus=(1/2)*(np.log(1-p**2)+np.log(vt[:-1])+np.log(dt))
-        m=1/2*(((1-p**2)*vt[:-1]*dt)**-1)*(St[:-1]+(r-(1/2)*vt[:-1]-(p/xi)*kappa*(theta-vt[:-1]))*dt+(p/xi)*(vt[:-1]-vt[1:]))**2
-        MLE=(corr_calculus*m).sum()
-        return -MLE
 
-    x0 = rho
-    bnds=((-1,0),)
-    res = minimize(solver,x0,method='SLSQP',options={'disp':False,'maxiter':2000},bounds=bnds)
-    p=res.x
+    kappa,theta,xi,p=self.Summation(n,dt,vt,St)
+
+
 
     return kappa,theta,xi,p
