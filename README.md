@@ -6,7 +6,7 @@ Monte Carlo simulations
 
 OLS regression
 
-the maximum log likelihood.
+Maximum log likelihood.
 
 To have a better understanding of the subject you can read the following papers:
 
