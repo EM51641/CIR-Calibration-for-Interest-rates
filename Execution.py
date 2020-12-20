@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import quandl
+import Initialize_parameters
 
 dt    = 1/252
 rfree = quandl.get("USTREASURY/YIELD")['1 YR']
