@@ -8,11 +8,8 @@ OLS regression
 
 Maximum log likelihood.
 
-To have a better understanding of the subject you can read the following papers:
+To have a better understanding of the subject you can read the following paper:
 
-https://bit.ly/3f5s1kX
-
-https://lib.dr.iastate.edu/cgi/viewcontent.cgi?article=16802&context=rtd
 
 http://lnu.diva-portal.org/smash/get/diva2:1270329/FULLTEXT01.pdf
 
