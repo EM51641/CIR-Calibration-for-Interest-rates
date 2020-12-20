@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from pandas_datareader import data as wb
 import quandl
 
 dt    = 1/52
