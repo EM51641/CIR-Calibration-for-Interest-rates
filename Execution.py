@@ -1,10 +1,7 @@
 import numpy as np
 import pandas as pd
 from pandas_datareader import data as wb
-from scipy.optimize import minimize 
-from numba import jit
 import quandl
-import statsmodels.api as sm
 
 dt    = 1/52
 rfree = quandl.get("USTREASURY/YIELD")['1 YR']
