@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 from pandas_datareader import data as wb
-from scipy.optimize import minimize 
-from numba import jit
 
 class Initialize_parameters:
     
