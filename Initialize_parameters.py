@@ -3,6 +3,7 @@ import pandas as pd
 from pandas_datareader import data as wb
 from scipy.optimize import minimize 
 from numba import jit
+import statsmodels.api as sm
 
 class Initialize_parameters:
     
