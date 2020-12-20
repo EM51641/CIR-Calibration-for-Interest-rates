@@ -8,7 +8,7 @@ rfree = quandl.get("USTREASURY/YIELD")['1 YR']
 rfree = pd.DataFrame(rfree)
 Kappa,theta,xi = Initialize_parameters().kappa_sigma_theta_initial_estimators(dt,rfree)
 args = [dt,len(rfree),rfree]
-res = minimize(LogL,[Kappa,theta,xi],args,method='SLSQP')
+res = minimize(Initialize_parameters().LogL,[Kappa,theta,xi],args,method='SLSQP')
 Kappa,theta,xi=res.x
 day_forecasts = 252
 number_of_trials = 1000
