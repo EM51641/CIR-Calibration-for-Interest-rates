@@ -11,5 +11,5 @@ args = [dt,len(rfree),rfree]
 res = minimize(LogL,[Kappa,theta,xi],args,method='SLSQP')
 Kappa,theta,xi=res.x
 day_forecasts = 252
-number_of_try = 1000
-H = Initialize_parameters().MCR(rfree.iloc[-1,0], Kappa, theta, xi,dt,day_forecasts,number_of_try)
+number_of_trials = 1000
+H = Initialize_parameters().MCR(rfree.iloc[-1,0], Kappa, theta, xi,dt,day_forecasts,number_of_trials)
