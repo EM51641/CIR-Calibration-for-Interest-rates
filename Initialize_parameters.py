@@ -49,8 +49,8 @@ class Initialize_parameters:
         v = c*rfree[1:].values
         z = 2*np.sqrt(u*v)
         bf = scipy.special.ive(q,z)
-        lnL= -(n-1)* np.log(c) + np.sum(u + v - 0.5*q*np.log(v/u) - np.log(bf) - z)
-        return lnL
+        lnL= (n-1)* np.log(c) - np.sum(-u - v + 0.5*q*np.log(v/u) + np.log(bf) + z)
+        return -lnL
     
     
     def MCR(self,cond_v, kappa, theta, xi,dt,n,J):
