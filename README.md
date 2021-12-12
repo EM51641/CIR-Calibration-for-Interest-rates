@@ -2,7 +2,7 @@
 Estimation of the CIR parameters for the interest rates case.
 To estimate the parameters we used :
 
-OLS regression
+Simple Linear Algebra (OLS)
 
 Maximum log likelihood.
 
