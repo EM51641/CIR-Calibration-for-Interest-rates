@@ -5,7 +5,7 @@ from scipy.optimize import minimize
 from numba import jit
 import statsmodels.api as sm
 
-class Initialize_parameters:
+class CIRModel:
     
     def __init__(self):
         pass
